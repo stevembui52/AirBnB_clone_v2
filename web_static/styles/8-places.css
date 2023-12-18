@@ -1,0 +1,106 @@
+/* Definition general class Places*/
+
+.places {
+    display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+/* heading styles */
+
+.places h1 {
+    font-size: 30px;
+    flex-basis: 100%;
+}
+
+article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: #FF5A5F solid 1px;
+    border-radius: 4px;
+    
+
+}
+
+article h2 {
+    font-size: 30px;
+    width: 75%;
+    text-align: center;
+    align-content: center;
+}
+.price_by_night {
+    color: #FF5A5F;
+    border: #FF5A5F solid 4px;
+    border-radius: 50%;
+    text-align: center;
+    min-width: 60px;
+    width: 80px;
+    height: 80px;
+    font-size: 30px;
+    line-height: 80px;
+    margin-bottom: 10px;
+    margin-left: 270px;
+    margin-top: -50px;
+}
+.information{
+    height: 80px;
+    border-bottom: #DDDDDD solid 1px;
+    border-top: #DDDDDD solid 1px;
+    display: flex;
+    font-size: 16px;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    width: 100%;
+}
+.max_guest, .number_bathrooms, .number_rooms{
+    width: 100px;
+
+}
+.max_guest {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.number_rooms {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.number_bathrooms {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.max_guest .icon_img{
+    background: url(../images/icon_group.png);
+    width: 50px;
+    height: 50px;
+}
+.number_rooms .room_icon{
+    background: url(../images/icon_bed.png);
+    width: 50px;
+    height: 50px;
+}
+.number_bathrooms .icon_broom{
+    background: url(../images/icon_bath.png);
+    height: 50px;
+    width: 50px;
+}
+.user{
+    margin: 10px;
+}
+.description{
+    margin: 10px;
+}

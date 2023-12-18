@@ -1,142 +1,156 @@
-<center> <h1>HBNB - The Console</h1> </center>
+## Airbnb Clone Console
 
-This repository contains the initial stage of a student project to build a clone of the AirBnB website. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
+### Contents
+
+* [Description](https://github.com/Muigai-ben/AirBnB_clone#description)
+* [Files in This Repository](https://github.com/Muigai-ben/AirBnB_clone#files-in-this-repository)
+* [Usage](https://github.com/Muigai-ben/AirBnB_clone#usage)
+* [Installation](https://github.com/Muigai-ben/AirBnB_clone#installation)
+* [Example Usage](https://github.com/Muigai-ben/AirBnB_clone#example-usage)
+* [Technologies Used](https://github.com/Muigai-ben/AirBnB_clone#technologies-used)
+* [Authors](https://github.com/Muigai-ben/AirBnB_clone#authors)
+---
+
+### Description
+Over the course of the next few months, we at [Alx Program](https://www.alx.com/) will be creating a clone of the AirBnb application. This repository contains the code for one of the preliminary steps of this whole project: the console. As can be seen in the following image of the stack and architecture we will be using for this project, the console will serve as the core of the back-end side and will be written in Python. This console will connect directly to storage engines of which there will eventually be two: database and file storage. We focus on file storage in this particular instance.
+
+<p><img src="https://s3.amazonaws.com/intranet-projects-files/concepts/74/hbnb_step5.png" alt="Technology" width="629" height="335"></p>
+
+This repository contains several packages that include the various models that will be employed in the application as objects, a file storage schema class, and various tests written using the unittest module of Python.
 
 ---
 
-<center><h3>Repository Contents by Project Task</h3> </center>
+### Files in This Repository
+---
+| File                   | File Hierarchy                                       | Description
+|------------------------|------------------------------------------------------|--------------------------------------|
+| `console.py`           | [console.py](console.py)                                        | The main console file                |
+| `amenity.py`           | [models/amenity.py](models/amenity.py)                                  | The amenity subclass                 |
+| `base_model.py`        | [models/base_model.py](models/base_model.py)                               | The base model superclass            |
+| `city.py`              | [models/city.py](models/city.py)                                     | The city subclass                    |
+| `place.py`             | [models/place.py](models/place.py)                                    | The place subclass                   |
+| `review.py`            | [models/review.py](models/review.py)                                   | The review subclass                  |
+| `state.py`             | [models/state.py](models/state.py)                                    | The state subclass                   |
+| `user.py`              | [models/user.py](models/user.py)                                     | The user subclass                    |
+| `file_storage.py`      | [models/engine/file_storage.py](models/engine/file_storage.py)                      | The file storage class               |
+| `test_console.py`      | [tests/test_console.py](tests/test_console.py)                              | The unittest module for console      |
+| `test_amenity.py`      | [tests/test_models/test_amenity.py](tests/test_models/test_amenity.py)                  | The unittest module for amenity      |
+| `test_base_model.py`   | [tests/test_models/test_base_model.py](tests/test_models/test_base_model.py)               | The unittest module for base model   |
+| `test_city.py`         | [tests/test_models/test_city.py](tests/test_models/test_city.py)                     | The unittest module for city         |
+| `test_place.py`        | [tests/test_models/test_place.py](tests/test_models/test_place.py)                    | The unittest module for place        |
+| `test_review.py`       | [tests/test_models/test_review.py](tests/test_models/test_review.py)                   | The unittest module for review       |
+| `test_state.py`        | [tests/test_models/test_state.py](tests/test_models/test_state.py)                    | The unittest module for state        |
+| `test_user.py`         | [tests/test_models/test_user.py](tests/test_models/test_user.py)                     | The unittest module for user         |
+| `test_file_storage.py` | [tests/test_models/test_engine/test_file_storage.py](tests/test_models/test_engine/test_file_storage.py) | The unittest module for file storage |
+---
 
-| Tasks | Files | Description |
-| ----- | ----- | ------ |
-| 0: Authors/README File | [AUTHORS](https://github.com/warimap/AirBnB_clone_v2/blob/master/AUTHORS) | Project authors |
-| 1: Pep8 | N/A | All code is pep8 compliant|
-| 2: Unit Testing | [/tests](https://github.com/warimap/AirBnB_clone_v2/tree/master/tests) | All class-defining modules are unittested |
-| 3. Make BaseModel | [/models/base_model.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/base_model.py) | Defines a parent class to be inherited by all model classes|
-| 4. Update BaseModel w/ kwargs | [/models/base_model.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/base_model.py) | Add functionality to recreate an instance of a class from a dictionary representation|
-| 5. Create FileStorage class | [/models/engine/file_storage.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/engine/file_storage.py) [/models/_ _init_ _.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/__init__.py) [/models/base_model.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/base_model.py) | Defines a class to manage persistent file storage system|
-| 6. Console 0.0.1 | [console.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/console.py) | Add basic functionality to console program, allowing it to quit, handle empty lines and ^D |
-| 7. Console 0.1 | [console.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/console.py) | Update the console with methods allowing the user to create, destroy, show, and update stored data |
-| 8. Create User class | [console.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/console.py) [/models/engine/file_storage.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/engine/file_storage.py) [/models/user.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/user.py) | Dynamically implements a user class |
-| 9. More Classes | [/models/user.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/user.py) [/models/place.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/place.py) [/models/city.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/city.py) [/models/amenity.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/amenity.py) [/models/state.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/state.py) [/models/review.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/review.py) | Dynamically implements more classes |
-| 10. Console 1.0 | [console.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/console.py) [/models/engine/file_storage.py](https://github.com/warimap/AirBnB_clone_v2/blob/master/models/engine/file_storage.py) | Update the console and file storage system to work dynamically with all  classes update file storage |
-<br>
-<br>
-<center> <h2>General Use</h2> </center>
+### Usage
 
-1. First clone this repository.
+#### Basic Usage of The Console
+---
+| Command    | Usage                                     | Example                                           | Functionality                       |
+|------------|-------------------------------------------|---------------------------------------------------|-------------------------------------|
+| `help`     | `help`                                    | `help`                                            | displays a list of the commands     |
+| `create`   | `create <class>`                          | `create User`                                     | creates a new instance of a class   |
+| `show`     | `show <class> <id>`                       | `show User`                                       | shows a specific instance           |
+| `destroy`  | `destroy <class> <id>`                    | `destroy User`                                    | deletes a specific instance         |
+| `all`      | `all` or `all <class>`                    | `all User`                                        | shows all instances or a class      |
+| `update`   | `update <class> <id> <attribute> <value>` | `update User email 'airbnb@holbertonshool.com'`   | updates an attribute of an instance |
+| `count`    | `<class>.count`                           | `User.count`                                      | counts the number of instances      |
+| `quit`     | `quit`                                    | `quit`                                            | quits the console                   |
 
-3. Once the repository is cloned locate the "console.py" file and run it as follows:
+#### Advanced Command Usage of The Console
+---
+| Command         | Usage                                          | Example Usage                                              |
+|-----------------|------------------------------------------------|------------------------------------------------------------|
+| `show`          | `<class>.show(<id>)`                           | `User.show(123-123-123)`                                   |
+| `destroy`       | `<class>.destroy(<id>)`                        | `User.destroy(123-123-123)`                                |
+| `all`           | `<class>.all`                                  | `User.all`                                                 |
+| `update`        | `<class>.update(<id>, <attribute>, <value>)`   | `User.update(1, email, 'airbnb@holbertonshool.com')`       |
+| `update` (dict) | `<class>.update(<id>, <dictionary>)`           | `User.update(1, {'email' : 'airbnb@holbertonshool.com'})`  |
+---
+
+### Installation
 ```
-/AirBnB_clone_v2$ ./console.py
+git clone https://github.com/Muigai-ben/AirBnB_clone.git
 ```
-4. When this command is run the following prompt should appear:
+---
+
+### Example Usage
+
+#### Interactive Mode
 ```
+$ ./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  all  count  create  destroy  help  quit  show  update
 (hbnb)
+(hbnb)
+(hbnb) quit
+$
 ```
-5. This prompt designates you are in the "HBnB" console. There are a variety of commands available within the console program.
-
-##### Commands
-    * create - Creates an instance based on given class
-
-    * destroy - Destroys an object based on class and UUID
-
-    * show - Shows an object based on class and UUID
-
-    * all - Shows all objects the program has access to, or all objects of a given class
-
-    * update - Updates existing attributes an object based on class name and UUID
-
-    * quit - Exits the program (EOF will as well)
-
-
-##### Alternative Syntax
-Users are able to issue a number of console command using an alternative syntax:
-
-	Usage: <class_name>.<command>([<id>[name_arg value_arg]|[kwargs]])
-Advanced syntax is implemented for the following commands: 
-
-    * all - Shows all objects the program has access to, or all objects of a given class
-
-	* count - Return number of object instances by class
-
-    * show - Shows an object based on class and UUID
-
-	* destroy - Destroys an object based on class and UUID
-
-    * update - Updates existing attributes an object based on class name and UUID
-
-<br>
-<br>
-<center> <h2>Examples</h2> </center>
-<h3>Primary Command Syntax</h3>
-
-###### Example 0: Create an object
-Usage: create <class_name>
 ```
+$ ./console.py
 (hbnb) create BaseModel
-```
-```
-(hbnb) create BaseModel
-3aa5babc-efb6-4041-bfe9-3cc9727588f8
-(hbnb)                   
-```
-###### Example 1: Show an object
-Usage: show <class_name> <_id>
-
-```
-(hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
-[BaseModel] (3aa5babc-efb6-4041-bfe9-3cc9727588f8) {'id': '3aa5babc-efb6-4041-bfe9-3cc9727588f8', 'created_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96959), 
-'updated_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96971)}
-(hbnb)  
-```
-###### Example 2: Destroy an object
-Usage: destroy <class_name> <_id>
-```
-(hbnb) destroy BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
-(hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
-** no instance found **
-(hbnb)   
-```
-###### Example 3: Update an object
-Usage: update <class_name> <_id>
-```
-(hbnb) update BaseModel b405fc64-9724-498f-b405-e4071c3d857f first_name "person"
-(hbnb) show BaseModel b405fc64-9724-498f-b405-e4071c3d857f
-[BaseModel] (b405fc64-9724-498f-b405-e4071c3d857f) {'id': 'b405fc64-9724-498f-b405-e4071c3d857f', 'created_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729889), 
-'updated_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729907), 'first_name': 'person'}
-(hbnb)
-```
-<h3>Alternative Syntax</h3>
-
-###### Example 0: Show all User objects
-Usage: <class_name>.all()
-```
-(hbnb) User.all()
-["[User] (99f45908-1d17-46d1-9dd2-b7571128115b) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92071), 'id': '99f45908-1d17-46d1-9dd2-b7571128115b', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92056)}", "[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+5dccfbf9-03a6-45f7-8a75-80094392bf97
+(hbnb) show BaseModel 5dccfbf9-03a6-45f7-8a75-80094392bf97
+[BaseModel] (5dccfbf9-03a6-45f7-8a75-80094392bf97) {'id': '5dccfbf9-03a6-45f7-8a75-80094392bf97', 'updated_at': datetime.datetime(2018, 6, 13, 23, 10, 13, 549740), 'created_at': datetime.datetime(2018, 6, 13, 23, 10, 13, 549699)}
+(hbnb) all
+[[BaseModel] (5dccfbf9-03a6-45f7-8a75-80094392bf97) {'id': '5dccfbf9-03a6-45f7-8a75-80094392bf97', 'updated_at': datetime.datetime(2018, 6, 13, 23, 10, 13, 549740), 'created_at': datetime.datetime(2018, 6, 13, 23, 10, 13, 549699)}]
+(hbnb) BaseModel.count
+1
+(hbnb) update BaseModel 5dccfbf9-03a6-45f7-8a75-80094392bf97 number 89
+(hbnb) show BaseModel 5dccfbf9-03a6-45f7-8a75-80094392bf97
+[BaseModel] (5dccfbf9-03a6-45f7-8a75-80094392bf97) {'number': '89', 'updated_at': datetime.datetime(2018, 6, 13, 23, 11, 51, 470426), 'created_at': datetime.datetime(2018, 6, 13, 23, 10, 13, 549699), 'id': '5dccfbf9-03a6-45f7-8a75-80094392bf97'}
+(hbnb) create User
+71e19890-6440-4ca9-9976-59ba61571f09
+(hbnb) all
+[[User] (71e19890-6440-4ca9-9976-59ba61571f09) {'id': '71e19890-6440-4ca9-9976-59ba61571f09', 'updated_at': datetime.datetime(2018, 6, 13, 23, 12, 39, 71568), 'created_at': datetime.datetime(2018, 6, 13, 23, 12, 39, 71532)}, [BaseModel] (5dccfbf9-03a6-45f7-8a75-80094392bf97) {'number': '89', 'updated_at': datetime.datetime(2018, 6, 13, 23, 11, 51, 470426), 'created_at': datetime.datetime(2018, 6, 13, 23, 10, 13, 549699), 'id': '5dccfbf9-03a6-45f7-8a75-80094392bf97'}]
+(hbnb) destroy User 71e19890-6440-4ca9-9976-59ba61571f09
+(hbnb) all
+[[BaseModel] (5dccfbf9-03a6-45f7-8a75-80094392bf97) {'number': '89', 'updated_at': datetime.datetime(2018, 6, 13, 23, 11, 51, 470426), 'created_at': datetime.datetime(2018, 6, 13, 23, 10, 13, 549699), 'id': '5dccfbf9-03a6-45f7-8a75-80094392bf97'}]
+(hbnb) destroy BaseModel 5dccfbf9-03a6-45f7-8a75-80094392bf97
+(hbnb) all
+[]
+(hbnb) quit
+$
 ```
 
-###### Example 1: Destroy a User
-Usage: <class_name>.destroy(<_id>)
+#### Non-Interactive Mode
 ```
-(hbnb) User.destroy("99f45908-1d17-46d1-9dd2-b7571128115b")
+$ echo "help" | ./console.py
 (hbnb)
-(hbnb) User.all()
-(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+Documented commands (type help <topic>):
+========================================
+EOF  all  count  create  destroy  help  quit  show  update
+
+(hbnb) $
+$
+$ echo "create BaseModel" | ./console.py
+(hbnb) f09bfbad-532d-4bbe-a2c1-815b1958f01e
+(hbnb) $
+$ echo "all" | ./console.py
+(hbnb) [[BaseModel] (f09bfbad-532d-4bbe-a2c1-815b1958f01e) {'id': 'f09bfbad-532d-4bbe-a2c1-815b1958f01e', 'updated_at': datetime.datetime(2018, 6, 13, 23, 16, 30, 420332), 'created_at': datetime.datetime(2018, 6, 13, 23, 16, 30, 420300)}]
+(hbnb) $
+$ echo "destroy BaseModel f09bfbad-532d-4bbe-a2c1-815b1958f01e" | ./console.py
+(hbnb) (hbnb) $
+$ echo "all" | ./console.py
+(hbnb) []
+(hbnb) $
+$
 ```
-###### Example 2: Update User (by attribute)
-Usage: <class_name>.update(<_id>, <attribute_name>, <attribute_value>)
-```
-(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", name "Todd the Toad")
-(hbnb)
-(hbnb) User.all()
-(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'name': 'Todd the Toad', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
-```
-###### Example 3: Update User (by dictionary)
-Usage: <class_name>.update(<_id>, <dictionary>)
-```
-(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", {'name': 'Fred the Frog', 'age': 9})
-(hbnb)
-(hbnb) User.all()
-(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
-```
-<br>
+---
+
+### Technologies Used
+* Language: Python3
+* Operating System: Ubuntu 20.04 LTS (Trusty64)
+* Style: PEP8 Ver. 1.7
+---
+
+### Authors
+
+Stephen Mbui  - [Twitter: @mbui__m](https://twitter.com/mbui__m)
+
+Muigai Wanjiku - 

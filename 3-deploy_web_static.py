@@ -8,6 +8,7 @@ env.user = "ubuntu"
 env.hosts = ["3.83.245.100", "107.23.155.200"]
 """The list of host server IP addresses."""
 
+
 @runs_once
 def do_pack():
     """Archives the static files."""
@@ -31,6 +32,7 @@ def do_pack():
         output = None
     return output
 
+
 def do_deploy(archive_path):
     """distributes an archive to the web servers"""
     if exists(archive_path) is False:
@@ -48,7 +50,7 @@ def do_deploy(archive_path):
         run('rm -rf /data/web_static/current')
         run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
         return True
-    except:
+    except Execption:
         return False
 
 

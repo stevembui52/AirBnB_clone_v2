@@ -1,4 +1,5 @@
-ets up a web server for deployment of web_static.
+#!/usr/bin/env bash
+# Sets up a web server for deployment of web_static.
 
 apt-get update
 apt-get install -y nginx
@@ -22,7 +23,7 @@ printf %s "server {
         index index.html index.htm;
     }
     location /redirect_me {
-        return 301 http://github.com/stevembui52;
+        return 301 http://github.com/besthor;
     }
     error_page 404 /404.html;
     location /404 {

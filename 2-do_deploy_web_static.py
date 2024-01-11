@@ -8,6 +8,7 @@ env.user = "ubuntu"
 env.hosts = ["3.83.245.100", "107.23.155.200"]
 """The list of host server IP addresses."""
 
+
 @runs_once
 def do_pack():
     """Archives the static files."""
@@ -53,5 +54,5 @@ def do_deploy(archive_path):
 
         print("New version deployed!")
         return True
-
-    return False
+    else:
+        return False
